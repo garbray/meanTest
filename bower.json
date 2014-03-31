@@ -1,0 +1,24 @@
+{
+  "name": "meanTest",
+  "version": "0.0.1",
+  "homepage": "https://github.com/garbray/meanTest",
+  "authors": [
+    "garbray <darksxd@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "toastr": "~2.0.1",
+    "angular": "~1.2.15",
+    "angular-resource": "~1.2.15",
+    "angular-route": "~1.2.15"
+  }
+}
