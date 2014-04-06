@@ -1,4 +1,6 @@
 extends ../includes/layout
 
 block main-content
-	h1 text demo content
+	section.content
+		div(ng-view)
+	h2= mongoMessage
