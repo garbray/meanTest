@@ -1,9 +1,9 @@
 var express = require('express'),
 		stylus = require('stylus'),
-		mongoose = require('mongoose');
+		logger = require('morgan'),
+		mongoose = require('mongoose'),
+		bodyParser = require('body-parser');
 
-
-console.log(process.env);
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -31,7 +31,7 @@ app.configure(function() {
 if(env === 'development') {
 	mongoose.connect('mongodb://localhost/meanTest');
 } else {
-	mongoose.connect('mongodb://garbray:meantest@oceanic.mongohq.com:10016/meanTest');
+	mongoose.connect('mongodb://demo:demo@ds051750.mongolab.com:51750/meantest');
 }
 
 var db = mongoose.connection;
@@ -47,18 +47,18 @@ var messageSchema = mongoose.Schema({
 });
 
 var Message = mongoose.model('Message', messageSchema);
+var mongoMessage;
 
 Message.findOne().exec(function(err, messageDoc) {
 	mongoMessage = messageDoc.message;
 });
 
-console.log(__dirname);
-app.get('/partials/:partialPath', function(request, response) {
-	response.render('partials/'+ request.params.partialPath);
+app.get('/partials/:partialPath', function(req, res) {
+	res.render('partials/'+ req.params.partialPath);
 });
 
-app.get('*', function(request, response) {
-	response.render('index', {
+app.get('*', function(req, res) {
+	res.render('index', {
 		mongoMessage: mongoMessage
 	});
 });
